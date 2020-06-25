@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>新規登録</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+
+<body class="registerbody">
+    <div class="register">
+        <h1>新規登録</h1>
+        <form action="register.php" method="post" autocomplete="off">
+            <label for="username">
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="text" name="username" placeholder="ユーザー名" id="username" required>
+            <label for="password">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="password" placeholder="パスワード" id="password" required>
+            <label for="email">
+                <i class="fas fa-envelope"></i>
+            </label>
+            <input type="email" name="email" placeholder="メールアドレス" id="email" required>
+            <input type="submit" value="新規登録">
+        </form>
+        <div class="backtologin">
+            <a href="index.html"><input type="button" id="backtologin" value="ログインページへ戻る"></a>
+        </div>
+    </div>
+</body>
+
+</html>

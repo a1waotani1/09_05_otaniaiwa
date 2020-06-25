@@ -1,0 +1,297 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+	padding: 0;
+}
+.login-body{
+	background:url(https://suitcasemag.com/wp-content/uploads/2017/02/pinterest-feature.jpg);
+}
+
+.login {
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 0 9px 0 rgba(0,0,0,0.3);
+    margin: 100px auto;
+}
+
+.login h1 {
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.login form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.login form label {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 50px;
+  	height: 50px;
+  	background-color: thistle;
+  	color: #ffffff;
+}
+
+.login #username, .login #password{
+    width: 310px;
+    height: 50px;
+    border: 1px solid grey;
+    margin-bottom:20px;
+    padding: 0 15px;
+}
+
+.login #submit {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: thistle;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.login #submit:hover {
+background-color: gold;
+transition: background-color 0.2s;
+}
+
+#registerbtn{
+    width: 100%;
+    padding: 15px;
+    background-color: thistle;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+#registerbtn:hover {
+background-color: gold;
+transition: background-color 0.2s;
+}
+
+.navtop {
+	background-color: transparent;
+	height: 60px;
+	width: 100%;
+	border: 0;
+	z-index: 1;
+}
+
+.navtop div {
+	display: flex;
+	margin: 0 auto;
+	width: 1000px;
+	height: 100%;
+}
+.navtop div h1, .navtop div a {
+	display: inline-flex;
+	align-items: center;
+}
+
+.navtop div h1 {
+	flex: 1;
+	font-size: 24px;
+	padding: 0;
+	margin: 0;
+	color: white;
+    font-weight: bold;
+	font-family: 'Montserrat', 'Mplus 1p', 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', '游ゴシック' , '游ゴシック体' , YuGothic , 'Yu Gothic', 'ＭＳ ゴシック' , 'MS Gothic', sans-serif;
+	letter-spacing: 1px;
+
+}
+
+.navtop div a {
+	padding: 0 20px;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+.navtop div a i {
+	padding: 2px 8px 0 0;
+}
+.navtop div a:hover {
+	color: #eaebed;
+}
+.loggedin {
+	background: white;
+}
+.content {
+	width: 1000px;
+	margin: 0 auto;
+}
+.content h2 {
+	font-size: 22px;
+	border-bottom: 1px solid thistle;
+	color:black;
+	padding:20px 0;
+	text-align: center;
+}
+.content > p, .content > div {
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+	margin: 25px 0;
+	padding: 25px;
+	background-color: #fff;
+}
+.content > p table td, .content > div table td {
+	padding: 5px;
+}
+.content > p table td:first-child, .content > div table td:first-child {
+	font-weight: bold;
+	color:black;
+	padding-right: 15px;
+}
+.content > div p {
+	padding: 5px;
+	margin: 0 0 10px 0;
+}
+
+::selection {
+	text-shadow: 1px 2px 0 cadetblue;
+	background-color: teal;
+}
+
+.registerbody {
+  background-image: url(https://suitcasemag.com/wp-content/uploads/2017/02/pinterest-feature.jpg);
+}
+.register {
+  	width: 400px;
+  	background-color: #ffffff;
+  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  	margin: 100px auto;
+}
+.register h1 {
+  	text-align: center;
+  	color: black;
+  	font-size: 24px;
+  	padding: 20px 0 20px 0;
+  	border-bottom: 1px solid #dee0e4;
+}
+.register form {
+  	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	padding-top: 20px;
+}
+.register form label {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 50px;
+ 	height: 50px;
+  	background-color: gold;
+  	color: #ffffff;
+}
+.register form input[type="password"], .register form input[type="text"], .register form input[type="email"] {
+  	width: 310px;
+  	height: 50px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+}
+.register form input[type="submit"] {
+  	width: 100%;
+  	padding: 15px;
+  	margin-top: 20px;
+  	background-color: gold;
+ 	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #ffffff;
+  	transition: background-color 0.2s;
+}
+.register form input[type="submit"]:hover {
+	background-color: thistle;
+  	transition: background-color 0.2s;
+}
+
+#backtologin{
+    width: 100%;
+    padding: 15px;
+    background-color: gold;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+#backtologin:hover {
+background-color: thistle;
+transition: background-color 0.2s;
+}
+
+.header-img {
+	width: 100%;
+	height: 500px;
+	
+}
+
+.header-img::after {
+content: "";
+  background: url(https://cdn.getyourguide.com/img/tour_img-1380276-148.jpg);
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;  
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid thistle;
+  border-right: none;
+  padding: 5px;
+  height: 50px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: thistle;
+}
+
+.searchButton {
+  width: 40px;
+  height: 50px;
+  border: 1px solid thistle;
+  background: thistle;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 800px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
