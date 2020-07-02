@@ -13,20 +13,22 @@ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_
 if (mysqli_connect_errno()) {
     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-//データからemailとパスワードを引き出す
-$stmt = $con->prepare('SELECT password, email, id FROM accounts WHERE id = ?');
+
+$stmt = $con->prepare('SELECT username, password, email FROM accounts WHERE id = ?');
 $stmt->bind_param('i', $_SESSION['id']);
+$stmt->bind_result($username, $password, $email);
 $stmt->execute();
-$stmt->bind_result($password, $email, $id);
 $stmt->fetch();
 $stmt->close();
+
 ?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>プロフィールページ</title>
+    <title>プロフィールページ（編集画面）</title>
     <link href="stylesheet.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 </head>
@@ -43,25 +45,37 @@ $stmt->close();
         </nav>
     </div>
     <div class="content">
-        <h2>プロフィールページ</h2>
+        <h2>プロフィールページ（編集画面）</h2>
         <div>
             <p>アカウント情報は以下に記載されています:</p>
-            <table>
-                <tr>
-                    <td>ユーザー名:</td>
-                    <td><?= $_SESSION['name'] ?></td>
-                    <td><a href='profile_edit.php?id=<?= $_SESSION['id'] ?>'><button id="edit_username">EDIT USERNAME</button></a></td>
-                </tr>
-                <tr>
-                    <td>パスワード:</td>
-                    <td><?= $password ?></td>
-                </tr>
-                <tr>
-                    <td>メールアドレス:</td>
-                    <td><?= $email ?></td>
-                </tr>
-            </table>
+            <form action="profile_update.php" method="POST">
+                <table>
+
+                    <tr>
+                        <td>ユーザー名:</td>
+                        <td><input type="text" name="username" value="<?= $_SESSION['name'] ?>"></td>
+                    </tr>
+
+                    <tr>
+                        <td>新しいユーザー名:</td>
+                        <td><input type="text" name="newusername" value="<?= $_SESSION['name'] ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>パスワード:</td>
+                        <td><?= $password ?></td>
+                    </tr>
+                    <tr>
+                        <td>メールアドレス:</td>
+                        <td><?= $email ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="submit2" value="保存する"></td>
+                    </tr>
+                    <input type="hidden" name="id" value="<?= $_SESSION['id'] ?>">
+                </table>
+            </form>
         </div>
+    </div>
     </div>
 </body>
 

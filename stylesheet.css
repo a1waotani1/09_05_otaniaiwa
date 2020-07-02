@@ -160,7 +160,6 @@ transition: background-color 0.2s;
 
 ::selection {
 	text-shadow: 1px 2px 0 cadetblue;
-	background-color: teal;
 }
 
 .registerbody {

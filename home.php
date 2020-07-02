@@ -24,12 +24,13 @@ if (!isset($_SESSION['loggedin'])) {
             <div>
                 <h1>travelist.</h1>
                 <a href="profile.php"><i class="fas fa-user-circle"></i>プロフィール</a>
+                <a href="#"><i class="fas fa-plus-circle"></i></i>アップロード</a>
                 <a href="logout.php"><i class="fas fa-sign-out-alt"></i>ログアウト</a>
             </div>
         </nav>
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="今日はどこに行きますか？">
+                <input type="text" class="searchTerm" placeholder="Nearest place to eat near me">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
