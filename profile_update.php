@@ -15,9 +15,10 @@ if (mysqli_connect_errno()) {
     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-$id = $_POST['id'];
+$id = $_SESSION['id'];
 $username = $_SESSION['name'];
 $newusername = $_POST['newusername'];
+
 
 if (isset($_POST['username'])) {
     if ($stmt = $con->prepare("SELECT username FROM accounts WHERE username='$username'")); {
