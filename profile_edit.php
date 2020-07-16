@@ -1,25 +1,27 @@
 <?php
 session_start();
-//ユーザーがログインされてなかったらログインページへ戻す
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: index.html');
-    exit;
-}
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'gsacf_d06_05';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if (mysqli_connect_errno()) {
-    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+include("functions.php");
+check_session_id();
+$id = $_GET["id"];
+
+$pdo = connect_to_db();
+$sql = 'SELECT * FROM users_table WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+$status = $stmt->execute();
+
+// データ登録処理後
+if ($status == false) {
+    // SQL実行に失敗した場合はここでエラーを出力し，以降の処理を中止する
+    $error = $stmt->errorInfo();
+    echo json_encode(["error_msg" => "{$error[2]}"]);
+    exit();
+} else {
+    // 正常にSQLが実行された場合は指定の11レコードを取得
+    // fetch()関数でSQLで取得したレコードを取得できる
+    $record = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-$stmt = $con->prepare('SELECT username, password, email FROM accounts WHERE id = ?');
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->bind_result($username, $password, $email);
-$stmt->execute();
-$stmt->fetch();
-$stmt->close();
 
 ?>
 
@@ -52,13 +54,8 @@ $stmt->close();
                 <table>
 
                     <tr>
-                        <td>ユーザー名:</td>
-                        <td><input type="text" name="username" value="<?= $_SESSION['name'] ?>"></td>
-                    </tr>
-
-                    <tr>
                         <td>新しいユーザー名:</td>
-                        <td><input type="text" name="newusername" value="<?= $_SESSION['name'] ?>"></td>
+                        <td><input type="text" name="username" value="<?= $_SESSION['username'] ?>"></td>
                     </tr>
                     <tr>
                         <td>パスワード:</td>

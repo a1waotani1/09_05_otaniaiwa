@@ -1,10 +1,49 @@
 <?php
 session_start();
-//ユーザーがログインされてなかったらログインページへ戻す
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: index.html');
-    exit;
+include("functions.php");
+check_session_id();
+
+$user_id = $_SESSION['id'];
+
+$pdo = connect_to_db();
+
+//$sql = "SELECT * FROM users_table";
+$sql = 'SELECT * FROM users_table LEFT OUTER JOIN (SELECT follower_id, COUNT(id) AS cnt FROM followers_table GROUP BY follower_id) AS follows
+ON users_table.id = follows.follower_id';
+
+// SQL準備&実行
+$stmt = $pdo->prepare($sql);
+$status = $stmt->execute();
+
+if ($status == false) {
+    // SQL実行に失敗した場合はここでエラーを出力し，以降の処理を中止する
+    $error = $stmt->errorInfo();
+    echo json_encode(["error_msg" => "{$error[2]}"]);
+    exit();
+} else {
+    // 正常にSQLが実行された場合は入力ページファイルに移動し，入力ページの処理を実行する
+    // fetchAll()関数でSQLで取得したレコードを配列で取得できる
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $output = "";
+    // <tr><td>deadline</td><td>todo</td><tr>の形になるようにforeachで順番に$outputへデータを追加
+    // `.=`は後ろに文字列を追加する，の意味
+    foreach ($result as $record) {
+        $output .= "<tr>";
+        $output .= "<td>{$record['username']}</td>";
+        $output .= "<td><a href='follow_create.php?user_id={$user_id}&follower_id={$record["id"]}'>FOLLOW{$record["cnt"]}</a></td >";
+        // $output .= "<td><a href='like_create.php?user_id={$user_id}&todo_id={$record["id"]}'>like{$record["cnt"]}</a></td >";
+    }
+    // $valueの参照を解除する．解除しないと，再度foreachした場合に最初からループしない
+    // 今回は以降foreachしないので影響なし
+    unset($value);
 }
+
+//ユーザーがログインされてなかったらログインページへ戻す
+// if (!isset($_SESSION['loggedin'])) {
+//     header('Location: index.html');
+//     exit;
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +78,17 @@ if (!isset($_SESSION['loggedin'])) {
     </div>
     <div class="content">
         <h2>HOME</h2>
-        <p>Welcome back <?= $_SESSION['name'] ?>!</p>
-
+        <p>Welcome back <?= $_SESSION['username'] ?>!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>USERS YOU MAY KNOW</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?= $output ?>
+            </tbody>
+        </table>
     </div>
 </body>
 
